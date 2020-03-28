@@ -1,0 +1,22 @@
+﻿@model Vidly.ViewModels.CustomersViewModel
+@{
+    ViewBag.Title = "Customers";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Customers</h2>
+
+@if (@Model.Customers.Count() == 0)
+{
+    // razor renders text tags as plain text
+    <text>No customers were found.</text>
+}
+else
+{
+    <ul>
+        @foreach (var customer in Model.Customers)
+        {
+            <li>@Html.ActionLink(customer.Name, "Details", "Customers", new { Id = customer.CustomerId }, null) </li>
+        }
+    </ul>
+}
