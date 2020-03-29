@@ -11,25 +11,25 @@ namespace Vidly.Controllers
     public class CustomersController : Controller
     {
         
-        private IEnumerable<Customer> _customers;
-
-        //private ApplicationDbContext _context;
+        private ApplicationDbContext _context;
 
         public CustomersController()
         {
-            _customers = new List<Customer>
-            {
-                new Customer{CustomerId = 1, Name = "Customer 1"},
-                new Customer{CustomerId = 2, Name = "Customer 2"}
-            };
+            _context = new ApplicationDbContext();
+        }
+        
+        // Ensure the context is disposed when the CustomersController class is disposed
+        protected override void Dispose(bool disposing)
+        {
+            _context.Dispose();
         }
 
-        // GET: Customer
+        // GET: Customers
         public ActionResult Index()
         {
             CustomersViewModel viewModel = new CustomersViewModel
             {
-                Customers = _customers
+                Customers = _context.Customers.ToList()
             };
             
             return View(viewModel);
@@ -38,11 +38,12 @@ namespace Vidly.Controllers
         [Route("Customers/{Id:regex(\\d)}")]
         public ActionResult Details(int Id)
         {
-            var customer = _customers.FirstOrDefault(p => p.CustomerId == Id);
+            var customer = _context.Customers.SingleOrDefault(p => p.CustomerId == Id);
             if(customer is null)
                 return HttpNotFound();
             else
                 return View(customer);
         }
+
     }
 }
