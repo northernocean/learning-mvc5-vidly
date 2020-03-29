@@ -11,7 +11,7 @@ namespace Vidly.Migrations
                 "dbo.Customers",
                 c => new
                     {
-                        CustomerId = c.Int(nullable: false, identity: true),
+                        CustomerId = c.Int(nullable: false, identity: false),
                         Name = c.String(),
                     })
                 .PrimaryKey(t => t.CustomerId);
@@ -20,7 +20,7 @@ namespace Vidly.Migrations
                 "dbo.Movies",
                 c => new
                     {
-                        Id = c.Int(nullable: false, identity: true),
+                        Id = c.Int(nullable: false, identity: false),
                         Name = c.String(),
                     })
                 .PrimaryKey(t => t.Id);

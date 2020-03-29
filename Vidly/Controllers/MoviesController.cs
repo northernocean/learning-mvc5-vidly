@@ -10,20 +10,22 @@ namespace Vidly.Controllers
 {
 	public class MoviesController : Controller
 	{
+
+		ApplicationDbContext _context;
+
+		public MoviesController()
+		{
+			_context = new ApplicationDbContext();
+		}
+		
 		[Route("movies/random")]
 		public ActionResult Random()
 		{
-			Movie movie = new Movie { Name = "Shrek!" };
-			var customers = new List<Customer> {
-				new Customer{ Name = "Customer 1" },
-				new Customer{ Name = "Customer 2"},
-				new Customer{ Name = "Customer 3"},
-				new Customer{ Name = "Customer 4"},
-				new Customer{ Name = "Customer 5"}
-			};
+			var movies = _context.Movies.ToList();
+			var customers = _context.Customers.ToList();
 			var viewModel = new RandomMovieViewModel
 			{
-				Movie = movie,
+				Movie = movies[new Random().Next(0, movies.Count())],
 				Customers = customers
 			};
 			return View(viewModel);
@@ -32,17 +34,18 @@ namespace Vidly.Controllers
 		public ActionResult Index()
 		{
 			//GET: Movies
-			var viewModel = new MoviesViewModel
-			{
-				Movies = new List<Movie>
-				{
-					new Movie { Id = 1, Name = "Shrek!" },
-					new Movie { Id = 2, Name = "Footloose" }
-				}
-			};
-
+			var viewModel = new MoviesViewModel();
+			viewModel.Movies = _context.Movies.ToList();
+			
 			return View(viewModel);
 
+		}
+
+		[Route("Movies/{Id:regex(\\d)}")]
+		public ActionResult Details(int Id)
+		{
+			var movie = _context.Movies.Include("GenreDetails").ToList()[Id];
+			return View(movie);
 		}
 
 		// GET: Movies/Random

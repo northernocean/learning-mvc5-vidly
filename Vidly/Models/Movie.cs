@@ -12,12 +12,12 @@ namespace Vidly.Models
 	{
 		public int Id { get; set; }
 		public string Name { get; set; }
-		//[Column(TypeName = "Date")]
-		//public DateTime ReleaseDate { get; set; }
-		//[StringLength(100)]
-		//public string Genre { get; set; }
-		//[Column(TypeName = "Date")]
-		//public DateTime DateAdded { get; set; }
-		//public int NumberInStock { get; set; }
+		[Column(TypeName = "Date")]
+		public DateTime ReleaseDate { get; set; }
+		public short GenreId { get; set; }
+		[Column(TypeName = "Date")]
+		public DateTime DateAdded { get; set; }
+		public int NumberInStock { get; set; }
+		public Genre GenreDetails { get; set; } //Navigation Property
 	}
 }

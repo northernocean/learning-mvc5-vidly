@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Vidly.Models
 {
-    public class Genres
+    public class Genre
     {
         public short Id { get; set; }
         [StringLength(100)]
