@@ -18,6 +18,7 @@ namespace Vidly.Models
         public MembershipType MembershipType { get; set; } // a Navigation Property
         public byte MembershipTypeId { get; set; }
         [Column(TypeName="Date")]
+        [Display(Name="Date of Birth")]
         public DateTime? Birthdate { get; set; }
         
         public override string ToString()
