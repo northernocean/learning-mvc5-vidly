@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Data.Entity;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Vidly.Models
 {
@@ -16,6 +17,8 @@ namespace Vidly.Models
         public bool IsSubscribedToNewsletter { get; set; }
         public MembershipType MembershipType { get; set; } // a Navigation Property
         public byte MembershipTypeId { get; set; }
+        [Column(TypeName="Date")]
+        public DateTime? Birthdate { get; set; }
         
         public override string ToString()
         {
