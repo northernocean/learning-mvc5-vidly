@@ -13,6 +13,8 @@ namespace Vidly.Controllers
         
         private IEnumerable<Customer> _customers;
 
+        //private ApplicationDbContext _context;
+
         public CustomersController()
         {
             _customers = new List<Customer>
