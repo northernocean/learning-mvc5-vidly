@@ -10,7 +10,9 @@ namespace Vidly.Models
 {
     public class Customer
     {
-        
+
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int Id { get; set; }
         
         [Required]

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Data.Entity;
 using System.Web;
 using System.Web.Mvc;
 using Vidly.Models;
@@ -34,12 +35,60 @@ namespace Vidly.Controllers
 		public ActionResult Index()
 		{
 			//GET: Movies
-			var viewModel = new MoviesViewModel();
-			viewModel.Movies = _context.Movies.ToList();
-			
-			return View(viewModel);
+			var movies = _context.Movies.Include(m => m.GenreDetails).ToList();
+						
+			return View(movies);
 
 		}
+
+		public ActionResult New()
+		{
+
+			var viewModel = new MovieFormViewModel
+			{
+				Genres = _context.Genres.ToList()
+			};
+
+			return View("MovieForm", viewModel);
+		}
+		
+		public ActionResult Edit(int id)
+		{
+
+			var viewModel = new MovieFormViewModel
+			{
+				Movie = _context.Movies.Single(m => m.Id == id),
+				Genres = _context.Genres.ToList()
+			};
+
+			return View("MovieForm", viewModel);
+		}
+
+		[HttpPost]
+		public ActionResult Save(Movie movie)
+		{
+
+			if (movie.Id == 0)
+			{
+				movie.Id = _context.Movies.Max(m => m.Id) + 1;
+				movie.DateAdded = DateTime.UtcNow;
+				_context.Movies.Add(movie);
+			}
+			else
+			{
+				var movieInDB = _context.Movies.Single(m => m.Id == movie.Id);
+				movieInDB.GenreId = movie.GenreId;
+				movieInDB.Name = movie.Name;
+				movieInDB.NumberInStock = movie.NumberInStock;
+				movieInDB.ReleaseDate = movie.ReleaseDate;
+			}
+
+			_context.SaveChanges();
+
+			return RedirectToAction("Index", "Movies");
+
+		}
+
 
 		[Route("Movies/{Id:regex(\\d)}")]
 		public ActionResult Details(int Id)
