@@ -27,8 +27,8 @@
             Sql("update MemberShipTypes set [Name] = 'Quarterly' where Id = 3;");
             Sql("update MemberShipTypes set [Name] = 'Annual' where Id = 4;");
 
-            Sql("insert into Customers (CustomerId, Name, IsSubscribedToNewsletter, MemberShipTypeId, Birthdate) values (1, 'John Smith', 1, 1, '19730304');");
-            Sql("insert into Customers (CustomerId, Name, IsSubscribedToNewsletter, MemberShipTypeId, Birthdate) values (2, 'Mary Williams', 0, 2, null);");
+            Sql("insert into Customers (Id, Name, IsSubscribedToNewsletter, MemberShipTypeId, Birthdate) values (1, 'John Smith', 1, 1, '19730304');");
+            Sql("insert into Customers (Id, Name, IsSubscribedToNewsletter, MemberShipTypeId, Birthdate) values (2, 'Mary Williams', 0, 2, null);");
 
             Sql("insert into Movies (Id, [Name], ReleaseDate, GenreID, DateAdded, NumberInStock) values (1, 'Hangover', '20000101', 2, '20200329', 5)");
             Sql("insert into Movies (Id, [Name], ReleaseDate, GenreID, DateAdded, NumberInStock) values (2, 'Die Hard', '20000102', 1, '20200329', 6)");

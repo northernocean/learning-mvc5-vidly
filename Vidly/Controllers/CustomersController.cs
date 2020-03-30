@@ -38,7 +38,7 @@ namespace Vidly.Controllers
         [Route("Customers/{Id:regex(\\d)}")]
         public ActionResult Details(int Id)
         {
-            var customer = _context.Customers.Include(c => c.MembershipType).SingleOrDefault(p => p.CustomerId == Id);
+            var customer = _context.Customers.Include(c => c.MembershipType).SingleOrDefault(p => p.Id == Id);
             if(customer is null)
                 return HttpNotFound();
             else
@@ -60,12 +60,12 @@ namespace Vidly.Controllers
         public ActionResult Save(Customer customer)
         {
 
-            if(customer.CustomerId == 0)
+            if(customer.Id == 0)
                 _context.Customers.Add(customer);
             else
             {
                 var customerInDb = _context.Customers.Single(
-                                        c => c.CustomerId == customer.CustomerId);
+                                        c => c.Id == customer.Id);
                 customerInDb.Name = customer.Name;
                 customerInDb.Birthdate = customer.Birthdate;
                 customerInDb.MembershipTypeId = customer.MembershipTypeId;
@@ -81,7 +81,7 @@ namespace Vidly.Controllers
         public ActionResult Edit(int id)
         {
 
-            var customer = _context.Customers.SingleOrDefault(c => c.CustomerId == id);
+            var customer = _context.Customers.SingleOrDefault(c => c.Id == id);
 
             if (customer is null)
                 return HttpNotFound();
@@ -94,7 +94,6 @@ namespace Vidly.Controllers
             
             return View("CustomerForm", viewModel);
 
-            return RedirectToAction("", "");
         }
     
     }

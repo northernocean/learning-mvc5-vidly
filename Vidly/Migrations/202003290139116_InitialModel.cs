@@ -11,10 +11,10 @@ namespace Vidly.Migrations
                 "dbo.Customers",
                 c => new
                     {
-                        CustomerId = c.Int(nullable: false, identity: false),
+                        Id = c.Int(nullable: false, identity: false),
                         Name = c.String(),
                     })
-                .PrimaryKey(t => t.CustomerId);
+                .PrimaryKey(t => t.Id);
             
             CreateTable(
                 "dbo.Movies",

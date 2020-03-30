@@ -11,7 +11,7 @@ namespace Vidly.Models
     public class Customer
     {
         
-        public int CustomerId { get; set; }
+        public int Id { get; set; }
         
         [Required]
         [StringLength(255)]
@@ -30,7 +30,7 @@ namespace Vidly.Models
         
         public override string ToString()
         {
-            return "" + CustomerId + Name;
+            return "" + Id + Name;
         }
     }
 }
