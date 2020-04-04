@@ -185,6 +185,14 @@
     <Compile Include="Migrations\202004041337462_InitialModel.designer.cs">
       <DependentUpon>202004041337462_InitialModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202004041347078_PopulateMembershipTypes.cs" />
+    <Compile Include="Migrations\202004041347078_PopulateMembershipTypes.designer.cs">
+      <DependentUpon>202004041347078_PopulateMembershipTypes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004041352496_TestData.cs" />
+    <Compile Include="Migrations\202004041352496_TestData.designer.cs">
+      <DependentUpon>202004041352496_TestData.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -390,6 +398,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202004041337462_InitialModel.resx">
       <DependentUpon>202004041337462_InitialModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004041347078_PopulateMembershipTypes.resx">
+      <DependentUpon>202004041347078_PopulateMembershipTypes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004041352496_TestData.resx">
+      <DependentUpon>202004041352496_TestData.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
