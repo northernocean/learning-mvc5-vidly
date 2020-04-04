@@ -1,4 +1,4 @@
-namespace Vidly.Migrations
+﻿namespace Vidly.Migrations
 {
     using System;
     using System.Data.Entity.Migrations;
@@ -11,8 +11,34 @@ namespace Vidly.Migrations
                 "dbo.Customers",
                 c => new
                     {
-                        Id = c.Int(nullable: false, identity: false),
-                        Name = c.String(),
+                        Id = c.Int(nullable: false, identity: true),
+                        Name = c.String(nullable: false, maxLength: 255),
+                        IsSubscribedToNewsletter = c.Boolean(nullable: false),
+                        MembershipTypeId = c.Byte(nullable: false),
+                        Birthdate = c.DateTime(storeType: "date"),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.MembershipTypes", t => t.MembershipTypeId, cascadeDelete: true)
+                .Index(t => t.MembershipTypeId);
+            
+            CreateTable(
+                "dbo.MembershipTypes",
+                c => new
+                    {
+                        Id = c.Byte(nullable: false),
+                        SignUpFee = c.Short(nullable: false),
+                        DurationInMonths = c.Byte(nullable: false),
+                        DiscountRate = c.Byte(nullable: false),
+                        Name = c.String(nullable: false, maxLength: 50),
+                    })
+                .PrimaryKey(t => t.Id);
+            
+            CreateTable(
+                "dbo.Genres",
+                c => new
+                    {
+                        Id = c.Short(nullable: false, identity: true),
+                        Name = c.String(maxLength: 100),
                     })
                 .PrimaryKey(t => t.Id);
             
@@ -20,10 +46,16 @@ namespace Vidly.Migrations
                 "dbo.Movies",
                 c => new
                     {
-                        Id = c.Int(nullable: false, identity: false),
-                        Name = c.String(),
+                        Id = c.Int(nullable: false, identity: true),
+                        Name = c.String(nullable: false),
+                        ReleaseDate = c.DateTime(nullable: false, storeType: "date"),
+                        GenreId = c.Short(nullable: false),
+                        DateAdded = c.DateTime(nullable: false, storeType: "date"),
+                        NumberInStock = c.Int(nullable: false),
                     })
-                .PrimaryKey(t => t.Id);
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Genres", t => t.GenreId, cascadeDelete: true)
+                .Index(t => t.GenreId);
             
             CreateTable(
                 "dbo.AspNetRoles",
@@ -101,18 +133,24 @@ namespace Vidly.Migrations
             DropForeignKey("dbo.AspNetUserLogins", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserClaims", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserRoles", "RoleId", "dbo.AspNetRoles");
+            DropForeignKey("dbo.Movies", "GenreId", "dbo.Genres");
+            DropForeignKey("dbo.Customers", "MembershipTypeId", "dbo.MembershipTypes");
             DropIndex("dbo.AspNetUserLogins", new[] { "UserId" });
             DropIndex("dbo.AspNetUserClaims", new[] { "UserId" });
             DropIndex("dbo.AspNetUsers", "UserNameIndex");
             DropIndex("dbo.AspNetUserRoles", new[] { "RoleId" });
             DropIndex("dbo.AspNetUserRoles", new[] { "UserId" });
             DropIndex("dbo.AspNetRoles", "RoleNameIndex");
+            DropIndex("dbo.Movies", new[] { "GenreId" });
+            DropIndex("dbo.Customers", new[] { "MembershipTypeId" });
             DropTable("dbo.AspNetUserLogins");
             DropTable("dbo.AspNetUserClaims");
             DropTable("dbo.AspNetUsers");
             DropTable("dbo.AspNetUserRoles");
             DropTable("dbo.AspNetRoles");
             DropTable("dbo.Movies");
+            DropTable("dbo.Genres");
+            DropTable("dbo.MembershipTypes");
             DropTable("dbo.Customers");
         }
     }
