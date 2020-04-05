@@ -7,6 +7,8 @@
     {
         public override void Up()
         {
+            Sql("delete from Customers;");
+            Sql("delete from Movies;");
 
             Sql("insert into Customers (Name, IsSubscribedToNewsletter, MemberShipTypeId, Birthdate) values ('John Smith', 1, 1, '19730304');");
             Sql("insert into Customers (Name, IsSubscribedToNewsletter, MemberShipTypeId, Birthdate) values ('Mary Williams', 0, 2, null);");
