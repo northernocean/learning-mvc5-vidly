@@ -37,7 +37,7 @@
 @section scripts{
     <script>
         $(document).ready(function () {
-            $("#customers").DataTable({
+            var table = $("#customers").DataTable({
                 ajax: {
                     url: "/api/customers",
                     dataSrc: ""
@@ -48,11 +48,11 @@
                         data: "name",
                         render: function (data, type, customer) {
                             return "<a href='/customers/edit/" +
-                                customer.id + "'>" + data + "/a>";
+                                customer.id + "'>" + data + "</a>";
                         }
                     },
                     {
-                        data: "name"
+                        data: "memberShipType.name"
                     },
                     {
                         data: "id",
@@ -71,7 +71,7 @@
                             url: "/api/customers/" + button.attr("data-customer-id"),
                             method: "DELETE",
                             success: function () {
-                                button.parents("tr").remove();
+                                table.row(button.parents("tr")).remove().draw();
                             }
                         });
                     }
