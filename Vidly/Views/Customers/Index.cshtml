@@ -17,19 +17,6 @@
             </tr>
         </thead>
         <tbody>
-            @*
-            @foreach (var customer in Model)
-            {
-                <tr>
-                    <td>@Html.ActionLink(customer.Name, "Edit", "Customers", new { Id = customer.Id }, null) </td>
-                    <td>@customer.MembershipType.DiscountRate%</td>
-                    <td>@customer.MembershipType.Name</td>
-                    <td>
-                        <button data-customer-id="@customer.Id" class="btn btn-link js-delete">Delete</button>
-                    </td>
-                </tr>
-            }
-            *@
         </tbody>
     </table>
 </div>

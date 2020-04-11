@@ -6,8 +6,8 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Vidly.Dtos
 {
-    public class MovieDto
-    {
+	public class MovieDto
+	{
 
 		public int Id { get; set; }
 
@@ -26,6 +26,8 @@ namespace Vidly.Dtos
 		[Required]
 		[Range(minimum: 1, maximum: 20)]
 		public int NumberInStock { get; set; }
+
+		public GenreDto GenreDetails {get; set;}
 	
 	}
 }
