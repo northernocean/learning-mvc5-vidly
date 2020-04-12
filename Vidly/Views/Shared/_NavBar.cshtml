@@ -9,6 +9,9 @@
         <li>
             @Html.ActionLink("Movies", "Index", "Movies", new { area = "" }, new { @class = "navbar-brand" })
         </li>
+        <li>
+            @Html.ActionLink("New Rental","New", "Rentals", new { area = "" }, new { @class="navbar-brand" })
+        </li>
     </ul>
 @Html.Partial("_LoginPartial")
 </div>
