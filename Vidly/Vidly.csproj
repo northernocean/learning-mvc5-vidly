@@ -243,9 +243,9 @@
     <Compile Include="Migrations\202004120001210_AddPhoneNumberToApplicationUser.designer.cs">
       <DependentUpon>202004120001210_AddPhoneNumberToApplicationUser.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202004121506105_AddRental.cs" />
-    <Compile Include="Migrations\202004121506105_AddRental.designer.cs">
-      <DependentUpon>202004121506105_AddRental.cs</DependentUpon>
+    <Compile Include="Migrations\202004121518245_AddRental.cs" />
+    <Compile Include="Migrations\202004121518245_AddRental.designer.cs">
+      <DependentUpon>202004121518245_AddRental.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
@@ -725,8 +725,8 @@
     <EmbeddedResource Include="Migrations\202004120001210_AddPhoneNumberToApplicationUser.resx">
       <DependentUpon>202004120001210_AddPhoneNumberToApplicationUser.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202004121506105_AddRental.resx">
-      <DependentUpon>202004121506105_AddRental.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202004121518245_AddRental.resx">
+      <DependentUpon>202004121518245_AddRental.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
