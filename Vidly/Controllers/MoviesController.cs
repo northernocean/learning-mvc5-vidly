@@ -57,6 +57,7 @@ namespace Vidly.Controllers
 			return View("MovieForm", viewModel);
 		}
 		
+		[Authorize(Roles = RoleName.CanManageMovies)]
 		public ActionResult Edit(int id)
 		{
 
@@ -70,6 +71,7 @@ namespace Vidly.Controllers
 		}
 
 		[HttpPost]
+		[Authorize(Roles = RoleName.CanManageMovies)]
 		[ValidateAntiForgeryToken]
 		public ActionResult Save(Movie movie)
 		{
