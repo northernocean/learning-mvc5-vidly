@@ -247,6 +247,14 @@
     <Compile Include="Migrations\202004121518245_AddRental.designer.cs">
       <DependentUpon>202004121518245_AddRental.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202004121539318_AddNumberAvailableToMovie.cs" />
+    <Compile Include="Migrations\202004121539318_AddNumberAvailableToMovie.designer.cs">
+      <DependentUpon>202004121539318_AddNumberAvailableToMovie.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004121540143_SeedNumberAvailable.cs" />
+    <Compile Include="Migrations\202004121540143_SeedNumberAvailable.designer.cs">
+      <DependentUpon>202004121540143_SeedNumberAvailable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\Rental.cs" />
@@ -727,6 +735,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202004121518245_AddRental.resx">
       <DependentUpon>202004121518245_AddRental.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004121539318_AddNumberAvailableToMovie.resx">
+      <DependentUpon>202004121539318_AddNumberAvailableToMovie.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004121540143_SeedNumberAvailable.resx">
+      <DependentUpon>202004121540143_SeedNumberAvailable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

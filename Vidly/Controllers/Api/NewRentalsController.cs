@@ -21,16 +21,27 @@ namespace Vidly.Controllers.Api
         [Authorize(Roles = RoleName.CanManageMovies)]
         public IHttpActionResult CreateNewRentals(NewRentalDto newRental)
         {
-            foreach(int id in newRental.MovieIds)
+
+            IEnumerable<Movie> movies = 
+                _context.Movies.Where(m => newRental.MovieIds.Contains(m.Id) && m.NumberAvailable > 0);
+
+            if (movies.Count() == newRental.MovieIds.Count)
             {
-                _context.Rentals.Add(new Rental { 
-                        CustomerId = newRental.CustomerId, 
-                        MovieId = id, 
+                foreach (var movie in movies)
+                {
+                    _context.Rentals.Add(new Rental
+                    {
+                        CustomerId = newRental.CustomerId,
+                        MovieId = movie.Id,
                         RentalDate = DateTime.UtcNow.ToLocalTime().Date
-                });
+                    });
+                    movie.NumberAvailable--;
+                }
+                _context.SaveChanges();
+                return Ok();
             }
-            _context.SaveChanges();
-            return Ok();
+            else
+                return BadRequest("One or more movies are unavailable");
         }
     }
 }
