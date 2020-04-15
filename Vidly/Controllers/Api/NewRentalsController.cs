@@ -18,6 +18,7 @@ namespace Vidly.Controllers.Api
         }
 
         [HttpPost]
+        [Route("api/rental/new")]
         [Authorize(Roles = RoleName.CanManageMovies)]
         public IHttpActionResult CreateNewRentals(NewRentalDto newRental)
         {
@@ -33,8 +34,8 @@ namespace Vidly.Controllers.Api
                     {
                         CustomerId = newRental.CustomerId,
                         MovieId = movie.Id,
-                        RentalDate = DateTime.UtcNow.ToLocalTime().Date
-                    });
+                        RentalDate = DateTime.UtcNow
+                    }); 
                     movie.NumberAvailable--;
                 }
                 _context.SaveChanges();
